@@ -4,10 +4,27 @@
             <meta charset="utf-8">
 	    <link rel="stylesheet" media="screen" href="./styles/style.css" type="text/css" />
 	    <script src="./vendor/jQuery.js" charset="utf-8"></script>
-	    <script src="./scripts/script.js" charset="utf-8"></script>
-	    <title></title>
+	    <script src="./scripts/client.js" charset="utf-8"></script>
+	    <title>Server Side Calculator</title>
+	    <header>Server Side Calculator</header>
 	</head>
     <body>
+		<h1>
+			<input class="number-input" id="first-number" >
+			<input type="button" value="+" class="number-operator" id="calc-add"></button>
+			<input type="button" value="-" class="number-operator" id="calc-subtract"></button>
+			<input type="button" value="*" class="number-operator" id="calc-multiply"></button>
+			<input type="button" value="/" class="number-operator" id="calc-divide"></button>
+			<input class="number-input" id="second-number" >
+			<button id="calc-solve" type="submit">=</button>
+			<button id="calc-clear">C</button>
+		</h1>
+		<div id="solution-here">
+
+		</div>
+		<ul id="calc-history">
+
+		</ul>
 
 	</body>
 </html>
