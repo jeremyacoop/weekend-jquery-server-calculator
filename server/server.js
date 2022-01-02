@@ -16,13 +16,13 @@ let calcHistory = [];
 function mathCalculate(mathProblem) {
     console.log('In mathCalculate');
     if(mathProblem.operator === '+') {
-        mathProblem.solution = mathProblem.numberOne + mathProblem.numberTwo;
+        mathProblem.solution = Number(mathProblem.numberOne) + Number(mathProblem.numberTwo);
     }else if(mathProblem.operator === '-') {
-        mathProblem.solution = mathProblem.numberOne - mathProblem.numberTwo;
+        mathProblem.solution = Number(mathProblem.numberOne) - Number(mathProblem.numberTwo);
     }else if(mathProblem.operator === '*') {
-        mathProblem.solution = mathProblem.numberOne * mathProblem.numberTwo;
+        mathProblem.solution = Number(mathProblem.numberOne) * Number(mathProblem.numberTwo);
     }else if(mathProblem.operator === '*') {
-        mathProblem.solution = mathProblem.numberOne / mathProblem.numberTwo;
+        mathProblem.solution = Number(mathProblem.numberOne) / Number(mathProblem.numberTwo);
     }
     console.log(mathProblem.solution);
     return mathProblem;
@@ -35,4 +35,10 @@ app.post('/calculator', (req, res) => {
     calcHistory.push(mathStatement);
     console.log(calcHistory);
     res.sendStatus(201);
-})
+});
+
+app.get('/calculator', (req, res) => {
+    console.log('In /calculator GET');
+    console.log(calcHistory);
+    res.send(calcHistory);
+});

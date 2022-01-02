@@ -64,4 +64,14 @@ function sendMathProblem(problemToSend) {
 
 function getMathSolution() {
     console.log('In getMathSolution');
+    $.ajax({
+        method: 'GET',
+        url:    '/calculator'
+    }).then( function(response) {
+        //$('#solution-here').empty();
+        console.log(response[response.length-1].solution);
+        $('#solution-here').append(response[response.length-1].solution);
+    }).catch(function(err) {
+        alert('Server unable to respond');
+    })
 }
