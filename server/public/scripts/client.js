@@ -1,4 +1,4 @@
-console.log('js', 6 / 3);
+console.log('js');
 
 $(document).ready(handleReady);
 
@@ -69,15 +69,15 @@ function getMathSolution() {
         $('#solution-here').empty();
         console.log(response[response.length-1].solution);
         // print calculator history to DOM
-        //$('#solution-here').append(response[response.length-1].solution);
+        $('#solution-here').append(response[response.length-1].solution);
         for(let i=response.length-1; i>=0; i--) {
-            $('#solution-here').append(`
-                <p>
+            $('#calc-history').append(`
+                <li>
                 ${response[i].numberOne} 
                 ${response[i].operator} 
                 ${response[i].numberTwo} =
                 ${response[i].solution} 
-                </p>
+                </li>
             `);
 
         }
