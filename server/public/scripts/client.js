@@ -39,7 +39,7 @@ function collectData() {
     let numData = {
         numberOne: numOne,
         numberTwo: numTwo,
-        numberOperator: numOperator,
+        operator: numOperator,
         solution: 0
     }
     console.log(numData);
