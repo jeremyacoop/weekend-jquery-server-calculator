@@ -7,11 +7,9 @@ let numOperator = '';
 function handleReady() {
     console.log('jQuery is ready');
     $('.number-operator').on('click', getOperator);
-    //$('#calc-subtract').on('click', getOperator);
     $('#calc-solve').on('click', sendMathProblem);
-    $('#calc-clear').on('click', function() {
-        console.log('clear button');
-    })
+    $('#calc-clear').on('click', clearInputs);
+    
 }
 
 function getOperator() {
@@ -68,10 +66,16 @@ function getMathSolution() {
         method: 'GET',
         url:    '/calculator'
     }).then( function(response) {
-        //$('#solution-here').empty();
+        $('#solution-here').empty();
         console.log(response[response.length-1].solution);
         $('#solution-here').append(response[response.length-1].solution);
     }).catch(function(err) {
         alert('Server unable to respond');
-    })
+    });
+}
+
+function clearInputs() {
+    $('#first-number').val('');
+    $('#second-number').val('');
+    $('.number-operator').val('');
 }
