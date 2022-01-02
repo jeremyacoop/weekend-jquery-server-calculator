@@ -21,7 +21,7 @@ function mathCalculate(mathProblem) {
         mathProblem.solution = Number(mathProblem.numberOne) - Number(mathProblem.numberTwo);
     }else if(mathProblem.operator === '*') {
         mathProblem.solution = Number(mathProblem.numberOne) * Number(mathProblem.numberTwo);
-    }else if(mathProblem.operator === '*') {
+    }else if(mathProblem.operator === '/') {
         mathProblem.solution = Number(mathProblem.numberOne) / Number(mathProblem.numberTwo);
     }
     console.log(mathProblem.solution);

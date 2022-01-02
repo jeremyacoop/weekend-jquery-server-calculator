@@ -1,4 +1,4 @@
-console.log('js');
+console.log('js', 6 / 3);
 
 $(document).ready(handleReady);
 
@@ -68,7 +68,19 @@ function getMathSolution() {
     }).then( function(response) {
         $('#solution-here').empty();
         console.log(response[response.length-1].solution);
-        $('#solution-here').append(response[response.length-1].solution);
+        // print calculator history to DOM
+        //$('#solution-here').append(response[response.length-1].solution);
+        for(let i=response.length-1; i>=0; i--) {
+            $('#solution-here').append(`
+                <p>
+                ${response[i].numberOne} 
+                ${response[i].operator} 
+                ${response[i].numberTwo} =
+                ${response[i].solution} 
+                </p>
+            `);
+
+        }
     }).catch(function(err) {
         alert('Server unable to respond');
     });
