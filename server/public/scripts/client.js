@@ -30,4 +30,18 @@ function collectData() {
     //console.log($('#calc-divide').val());
     console.log($('.number-operator').val());
     console.log(numOperator);
+
+    let numOne = $('#first-number').val();
+    console.log(numOne);
+    let numTwo = $('#second-number').val();
+    console.log(numTwo);
+
+    let numData = {
+        numberOne: numOne,
+        numberTwo: numTwo,
+        numberOperator: numOperator,
+        solution: 0
+    }
+    console.log(numData);
+    return numData;
 }
