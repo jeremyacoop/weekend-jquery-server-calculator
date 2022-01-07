@@ -5,9 +5,10 @@ const app = express();
 app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
-const PORT = 5000;
-app.listen(PORT, () => {
-    console.log('server up on port', PORT);
+//const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+app.listen(port, () => {
+    console.log('server up on port', port);
     })
 
 let mathStatement = {};
