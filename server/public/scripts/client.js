@@ -4,8 +4,28 @@ $(document).ready(handleReady);
 
 let numOperator = '';
 
+function displayCalcHistory(solutionHistory) {
+        // print calculator history to DOM
+        $('#solution-here').empty();
+        if(solutionHistory[solutionHistory.length-1].solution != undefined) {
+        $('#solution-here').append(solutionHistory[solutionHistory.length-1].solution);
+        }
+        $('#calc-history').empty();
+        for(let i=solutionHistory.length-1; i>=0; i--) {
+            $('#calc-history').append(`
+                <li>
+                ${solutionHistory[i].numberOne} 
+                ${solutionHistory[i].operator} 
+                ${solutionHistory[i].numberTwo} =
+                ${solutionHistory[i].solution} 
+                </li>
+            `);
+        }
+}
+
 function handleReady() {
     console.log('jQuery is ready');
+    refreshCalcHistory();
     $('.number-operator').on('click', getOperator);
     $('#calc-solve').on('click', sendMathProblem);
     $('#calc-clear').on('click', clearInputs);
@@ -20,19 +40,10 @@ function getOperator() {
 
 function collectData() {
     console.log('in collectData');
-    //console.log($('#first-number').val());
-    //console.log($('#second-number').val());
-    //console.log($('#calc-add').val());
-    //console.log($('#calc-subtract').val());
-    //console.log($('#calc-multiply').val());
-    //console.log($('#calc-divide').val());
-    //console.log($('.number-operator').val());
     console.log(numOperator);
 
     let numOne = $('#first-number').val();
-    //console.log(numOne);
     let numTwo = $('#second-number').val();
-    //console.log(numTwo);
 
     let numData = {
         numberOne: numOne,
@@ -54,32 +65,21 @@ function sendMathProblem(problemToSend) {
         url:    '/calculator',
         data:   problemToSend
     }).then( function(response) {
-        getMathSolution();
+        //getMathSolution();
+        refreshCalcHistory();
     }).catch(function(err) {
         alert('Server unable to respond');
     });
 }
 
-function getMathSolution() {
-    console.log('In getMathSolution');
+function refreshCalcHistory() {
+    console.log('In refreshCalcHistory');
     $.ajax({
         method: 'GET',
         url:    '/calculator'
     }).then( function(response) {
-        $('#solution-here').empty();
-        console.log(response[response.length-1].solution);
-        // print calculator history to DOM
-        $('#solution-here').append(response[response.length-1].solution);
-        for(let i=response.length-1; i>=0; i--) {
-            $('#calc-history').append(`
-                <li>
-                ${response[i].numberOne} 
-                ${response[i].operator} 
-                ${response[i].numberTwo} =
-                ${response[i].solution} 
-                </li>
-            `);
-
+        if(response[response.length-1] != undefined) {
+        displayCalcHistory(response);
         }
     }).catch(function(err) {
         alert('Server unable to respond');
